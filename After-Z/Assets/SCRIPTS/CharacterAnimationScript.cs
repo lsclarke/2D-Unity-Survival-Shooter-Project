@@ -29,7 +29,7 @@ public class CharacterAnimationScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         isFacingRight = true;
-        //movementScript = GetComponent<MovementScript>();
+        
     }
 
     private void FixedUpdate()
@@ -39,13 +39,11 @@ public class CharacterAnimationScript : MonoBehaviour
 
         if (movementScript.moveX < 0f && isFacingRight)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
             FlipAnimation();
         }
 
         if (movementScript.moveX > 0f && !isFacingRight)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
             FlipAnimation();
         }
 
@@ -54,9 +52,8 @@ public class CharacterAnimationScript : MonoBehaviour
     private void FlipAnimation()
     {
         //Get the current scale of the player and then multiply it by 1 to constantly flip between pos and neg
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale *= -1;
         isFacingRight = !isFacingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 
     private void AnimationStatesBehavior()
