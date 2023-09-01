@@ -216,6 +216,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  fireRate: 15
+  nextTimeToFire: 0
+  isShooting: 0
   type: 0
 --- !u!1 &2359546853067129634
 GameObject:

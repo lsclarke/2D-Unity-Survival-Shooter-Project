@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4776048304923622706}
   - component: {fileID: 6988902117900809298}
   - component: {fileID: 4493094499439282205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile-Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}

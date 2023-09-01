@@ -10,7 +10,7 @@ public class ProjectileScript : MonoBehaviour
     public float speed;
 
     public float lifeTime;
-    public Rigidbody2D rb2d;
+    public Rigidbody2D rb2d; 
 
     private void Awake()
     {
@@ -36,8 +36,10 @@ public class ProjectileScript : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Debug.Log(collision.name);
+        Destroy(this.gameObject);
     }
+
 }

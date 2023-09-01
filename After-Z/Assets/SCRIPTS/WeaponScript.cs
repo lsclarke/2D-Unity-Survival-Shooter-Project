@@ -35,7 +35,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (context.started)
         {
-            isShooting = true;  
+            isShooting = true;  ;
         }
         if (context.performed)
         {

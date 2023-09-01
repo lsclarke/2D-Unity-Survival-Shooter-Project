@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3965176662453564293}
   - component: {fileID: 5211500850815158014}
   - component: {fileID: -5510583550873356771}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile-Semi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
