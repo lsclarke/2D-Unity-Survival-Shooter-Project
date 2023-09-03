@@ -15,6 +15,7 @@ public class WeaponScript : MonoBehaviour
     [Space(5)]
     [Header("Projectile Bullets")]
     [SerializeField] public ProjectileScript[] projectiles = new ProjectileScript[3];
+    [SerializeField] public ParticleSystem muzzleFlash;
 
     public float fireRate = 15;
     public float nextTimeToFire = 0;
@@ -29,17 +30,20 @@ public class WeaponScript : MonoBehaviour
         //Start the game as a semi automatic
         type = WeaponType.SemiAuto;
         
+
     }
 
     public void Shoot(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            isShooting = true;  ;
+            isShooting = true;
+
         }
         if (context.performed)
         {
             isShooting = true;
+
         }
         if (context.canceled)
         {
@@ -51,6 +55,7 @@ public class WeaponScript : MonoBehaviour
     {
         switch (type)
         {
+            
             case WeaponType.SemiAuto:
 
                 fireRate = 1f;
@@ -72,6 +77,7 @@ public class WeaponScript : MonoBehaviour
                 fireRate = 4.5f;
                 if (isShooting && Time.time >= nextTimeToFire)
                 {
+                    
                     nextTimeToFire = Time.time + 1f / fireRate;
                     Instantiate(projectiles[2], projectileSpawner.position, projectileSpawner.rotation);
                     StartCoroutine(BurstFireRate());

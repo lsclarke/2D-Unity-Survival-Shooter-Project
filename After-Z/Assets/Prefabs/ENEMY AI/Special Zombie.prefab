@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speed: 1.5
-  attackPower: 2
+  attackPower: 1
   flip: 1
 --- !u!114 &1869666962004612883
 MonoBehaviour:

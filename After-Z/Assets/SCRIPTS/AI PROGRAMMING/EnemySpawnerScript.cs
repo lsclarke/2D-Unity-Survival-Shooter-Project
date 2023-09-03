@@ -27,10 +27,6 @@ public class EnemySpawnerScript : MonoBehaviour
 
         StartCoroutine(Spawner());
     }
-    private void FixedUpdate()
-    {
-     
-    }
 
     public void SpawnEnemies(Enum enemy)
     {

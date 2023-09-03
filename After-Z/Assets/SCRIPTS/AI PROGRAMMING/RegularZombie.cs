@@ -8,6 +8,7 @@ public class RegularZombie : MonoBehaviour, IDamagable
     [Header("Refernce Settings")]
     [SerializeField] public Rigidbody2D rb2D;
     [SerializeField] public EnemyScript enemyScript;
+    [SerializeField] public ScoreManagerScript scoreManagerScript;
     [SerializeField] public Transform player;
 
     private SpriteRenderer spriteRenderer;
@@ -16,6 +17,7 @@ public class RegularZombie : MonoBehaviour, IDamagable
     {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         enemyScript = this.gameObject.GetComponent<EnemyScript>();
+        scoreManagerScript = GameObject.Find("Score UI Manager").GetComponent<ScoreManagerScript>();
     }
 
     //HitAnimationFlash - When hit by player projectile the sprite renderer will
@@ -50,8 +52,8 @@ public class RegularZombie : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         enemyScript.health -= damage;
-
-        if(enemyScript.health <= 0)
+        scoreManagerScript.AddScore(10);
+        if (enemyScript.health <= 0)
         {
             Die();
         }
