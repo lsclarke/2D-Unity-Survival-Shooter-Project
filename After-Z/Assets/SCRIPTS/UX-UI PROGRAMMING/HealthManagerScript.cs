@@ -9,6 +9,7 @@ public class HealthManagerScript : MonoBehaviour
     [Header("Reference Settings")]
     private CharacterScript characterScript;
     public GameObject[] healthObjects;
+    public GameObject finalStatsScript;
 
     private void Awake()
     {
@@ -23,22 +24,20 @@ public class HealthManagerScript : MonoBehaviour
 
     private void UpdateHealth()
     {
-
         for (int pos = 0; pos < characterScript.health; pos++)
         {
             healthObjects[pos].SetActive(true);
-            Debug.Log("LOOP");
-
         }
-
         for (int pos = healthObjects.Length-1; pos >= characterScript.health; pos--)
         {
             healthObjects[pos].SetActive(false);
-            Debug.Log("LOOP");
+        }
 
+        if(characterScript == null)
+        {
+            Debug.Log("PLAYER IS DEAD");
+            finalStatsScript.gameObject.SetActive(true);
         }
 
     }
-
-
 }

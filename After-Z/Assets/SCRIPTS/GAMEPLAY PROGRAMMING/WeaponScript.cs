@@ -24,13 +24,31 @@ public class WeaponScript : MonoBehaviour
     private enum WeaponType { SemiAuto, Auto, Burst }
     [SerializeField] private WeaponType type;
 
-
     private void Awake()
     {
         //Start the game as a semi automatic
         type = WeaponType.SemiAuto;
-        
+    }
 
+    public void WeaponShift(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed)
+        {
+            int shift = UnityEngine.Random.Range(0,2);
+            if (shift == 0)
+            {
+                type = WeaponType.Auto;
+            }
+            if (shift == 1)
+            {
+                type = WeaponType.Burst;
+            }
+        }
+        if (context.canceled)
+        {
+            type = WeaponType.SemiAuto;
+        }
     }
 
     public void Shoot(InputAction.CallbackContext context)
@@ -96,9 +114,5 @@ public class WeaponScript : MonoBehaviour
     {
         SpawnProjectile(type);
     }
-
-
-
-
 
 }

@@ -56,6 +56,7 @@ public class RegularZombie : MonoBehaviour, IDamagable
         if (enemyScript.health <= 0)
         {
             Die();
+            scoreManagerScript.AddKill(1);
         }
     }
     //Destroy Enemy

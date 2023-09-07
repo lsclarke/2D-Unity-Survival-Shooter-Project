@@ -5,13 +5,42 @@ using UnityEngine;
 
 public class ScoreManagerScript : MonoBehaviour
 {
+    [Header("Refernce Settings")]
     public TextMeshProUGUI scoreText;
-    public float ScorePoints;
+    [Space(5)]
 
+    [Header("Score Stats Variables")]
+    public static float ScorePoints;
+    public static float killCount;
+    public static float highScore;
+
+    private void Awake()
+    {
+        killCount = 0;
+        highScore = 0;
+        ScorePoints = 0;
+    }
     public float AddScore(float num)
     {
         ScorePoints += num;
+        PlayerPrefs.SetFloat("HighScore", ScorePoints);
         return ScorePoints;
+    }
+
+    public float AddKill(float num)
+    {
+        killCount += num;
+        Debug.Log(killCount);
+        return killCount;
+    }
+    public float calHighScore()
+    {
+        PlayerPrefs.SetFloat("HighScore", ScorePoints);
+        if(ScorePoints > highScore)
+        {
+            highScore = ScorePoints;
+        }
+        return highScore;
     }
 
     public float subScore(float num)
@@ -19,6 +48,19 @@ public class ScoreManagerScript : MonoBehaviour
         num -= num;
         ScorePoints = num;
         return ScorePoints;
+    }
+    public float ShowPoints()
+    {
+        return ScorePoints;
+    }
+
+    public float ShowHighScore()
+    {
+        return highScore;
+    }
+    public float ShowKills()
+    {
+        return killCount;
     }
 
     private void FixedUpdate()
@@ -29,5 +71,6 @@ public class ScoreManagerScript : MonoBehaviour
     private void UpdateScore()
     {
         scoreText.text = "Score: " + ScorePoints.ToString();
+        calHighScore();
     }
 }

@@ -36,6 +36,11 @@ public class CharacterDamagedScript : MonoBehaviour, IDamagable
         {
             StartCoroutine(AnimFlash());
             TakeDamage(enemyScript.attackPower);
+
+            if (characterScript.health  == 0)
+            {
+                enemyScript.speed = 0;
+            }
         }
     }
 

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3532738160658006085}
   m_Layer: 6
   m_Name: RegularZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 3761617283115538349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.74, y: -0.983, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: -5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27955c1a87187614091fa55d3aee999a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   speed: 1
   attackPower: 1
   flip: 1
@@ -213,6 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 507936896087595390}
   enemyScript: {fileID: 3563452118788244809}
+  enemySpawnerScript: {fileID: 8479994359911936772, guid: 6968df4c1954d644a9de1ba318f75ad2, type: 3}
+  scoreManagerScript: {fileID: 2140070634270354563, guid: 9e20f43a8ed64a7459749a6798b974eb, type: 3}
   player: {fileID: 6638286371424939932, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
 --- !u!114 &3532738160658006085
 MonoBehaviour:

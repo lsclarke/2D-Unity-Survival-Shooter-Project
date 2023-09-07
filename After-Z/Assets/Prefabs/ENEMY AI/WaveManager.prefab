@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5873274380252520531
+--- !u!1 &7383420805744485793
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1049938998146306272}
-  - component: {fileID: 8479994359911936772}
+  - component: {fileID: 3644180285540647563}
+  - component: {fileID: 8784300990642529987}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: WaveManager
   m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1049938998146306272
+--- !u!4 &3644180285540647563
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873274380252520531}
+  m_GameObject: {fileID: 7383420805744485793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.4, y: -0.82, z: -0.08844868}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8479994359911936772
+--- !u!114 &8784300990642529987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873274380252520531}
+  m_GameObject: {fileID: 7383420805744485793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796d5c54453e9604698e9ba4cd69207e, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b4f5a0834a2f8489d258eff723b45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab:
+  roundManagerScript: {fileID: 7605416709323553977, guid: 77c804318e0dcf24aa3cefcbb63f8efc, type: 3}
+  enemyScript: {fileID: 3563452118788244809, guid: 0f8c20b46a65ade42a50630ef14328a1, type: 3}
+  enemyTypes:
   - {fileID: 3761617283115538349, guid: 0f8c20b46a65ade42a50630ef14328a1, type: 3}
-  - {fileID: 3761617283115538349, guid: 253dd1d23f1ce5344b5f7fab572c908f, type: 3}
-  spawnRate: 10
-  canSpawn: 0
-  type: 0
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnTime: 0
+  spawnRate: 1
+  CanSpawn: 1
+  currentEnemyNum: 0
+  maxEnemyNum: 2
+  timeInBetweenRounds: 8
+  roundChanging: 0

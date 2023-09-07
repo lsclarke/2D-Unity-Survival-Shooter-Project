@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  speed: 1.5
+  speed: 1
   attackPower: 1
   flip: 1
 --- !u!114 &1869666962004612883
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 507936896087595390}
   enemyScript: {fileID: 3563452118788244809}
+  scoreManagerScript: {fileID: 2140070634270354563, guid: 9e20f43a8ed64a7459749a6798b974eb, type: 3}
   player: {fileID: 6638286371424939932, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
 --- !u!114 &3532738160658006085
 MonoBehaviour:
