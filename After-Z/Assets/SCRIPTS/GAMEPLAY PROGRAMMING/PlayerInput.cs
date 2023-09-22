@@ -71,6 +71,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ce9b710-7936-46bb-8287-775aea75c913"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""41d63e4d-1a6c-4f9f-b795-e432e120e44a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +245,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""WeaponShift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b1a3a1c-7310-4379-a995-1260d1a9b293"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffcba61a-d9c7-495b-8e77-b1063cd076db"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -240,6 +280,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerInputs_Crouch = m_PlayerInputs.FindAction("Crouch", throwIfNotFound: true);
         m_PlayerInputs_Shoot = m_PlayerInputs.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerInputs_WeaponShift = m_PlayerInputs.FindAction("WeaponShift", throwIfNotFound: true);
+        m_PlayerInputs_Interact = m_PlayerInputs.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerInputs_Reload = m_PlayerInputs.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +348,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInputs_Crouch;
     private readonly InputAction m_PlayerInputs_Shoot;
     private readonly InputAction m_PlayerInputs_WeaponShift;
+    private readonly InputAction m_PlayerInputs_Interact;
+    private readonly InputAction m_PlayerInputs_Reload;
     public struct PlayerInputsActions
     {
         private @PlayerInput m_Wrapper;
@@ -315,6 +359,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_PlayerInputs_Crouch;
         public InputAction @Shoot => m_Wrapper.m_PlayerInputs_Shoot;
         public InputAction @WeaponShift => m_Wrapper.m_PlayerInputs_WeaponShift;
+        public InputAction @Interact => m_Wrapper.m_PlayerInputs_Interact;
+        public InputAction @Reload => m_Wrapper.m_PlayerInputs_Reload;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +385,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @WeaponShift.started += instance.OnWeaponShift;
             @WeaponShift.performed += instance.OnWeaponShift;
             @WeaponShift.canceled += instance.OnWeaponShift;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayerInputsActions instance)
@@ -358,6 +410,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @WeaponShift.started -= instance.OnWeaponShift;
             @WeaponShift.performed -= instance.OnWeaponShift;
             @WeaponShift.canceled -= instance.OnWeaponShift;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayerInputsActions instance)
@@ -382,5 +440,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnWeaponShift(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

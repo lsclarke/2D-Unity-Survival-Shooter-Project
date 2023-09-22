@@ -37,7 +37,7 @@ public class CharacterJumpScript : MonoBehaviour
         //Initialize Classes
         characterScript = GetComponent<CharacterScript>();
         rb2D = GetComponent<Rigidbody2D>();
-
+        
         //Set jump to Character Script jump var
         jumpForce = characterScript.getJumpPower();
 
@@ -45,6 +45,8 @@ public class CharacterJumpScript : MonoBehaviour
     private void FixedUpdate()
     {
         grounded = isGrounded();
+
+        jumpForce = characterScript.getJumpPower();
     }
 
     public void Jump(InputAction.CallbackContext context)

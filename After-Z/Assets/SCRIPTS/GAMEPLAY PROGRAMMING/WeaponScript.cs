@@ -11,6 +11,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] public Rigidbody2D rb2D;
     [SerializeField] public PlayerInput input;
     [SerializeField] public Transform projectileSpawner;
+    [SerializeField] public AmmoManagerScript ammoScript;
 
     [Space(5)]
     [Header("Projectile Bullets")]
@@ -21,8 +22,8 @@ public class WeaponScript : MonoBehaviour
     public float nextTimeToFire = 0;
     public bool isShooting;
    
-    private enum WeaponType { SemiAuto, Auto, Burst }
-    [SerializeField] private WeaponType type;
+    public enum WeaponType { SemiAuto, Auto, Burst }
+    [SerializeField] public WeaponType type;
 
     private void Awake()
     {
@@ -77,33 +78,35 @@ public class WeaponScript : MonoBehaviour
             case WeaponType.SemiAuto:
 
                 fireRate = 1f;
-                if (isShooting && Time.time >= nextTimeToFire)
+                if (isShooting && Time.time >= nextTimeToFire && ammoScript.AmmoCount() > 0)
                 {
                     nextTimeToFire = Time.time + 1f/fireRate;
                     Instantiate(projectiles[0], projectileSpawner.position, projectileSpawner.rotation);
+                    ammoScript.subAmmo(1);
                 }
                 break;
             case WeaponType.Auto:
                 fireRate = 7.5f;
-                if (isShooting && Time.time >= nextTimeToFire)
+                if (isShooting && Time.time >= nextTimeToFire && ammoScript.AmmoCount() > 0)
                 {
                     nextTimeToFire = Time.time + 1f / fireRate;
                     Instantiate(projectiles[1], projectileSpawner.position, projectileSpawner.rotation);
+                    ammoScript.subAmmo(1);
                 }
                 break;
             case WeaponType.Burst:
                 fireRate = 4.5f;
-                if (isShooting && Time.time >= nextTimeToFire)
+                if (isShooting && Time.time >= nextTimeToFire && ammoScript.AmmoCount() > 0)
                 {
                     
                     nextTimeToFire = Time.time + 1f / fireRate;
                     Instantiate(projectiles[2], projectileSpawner.position, projectileSpawner.rotation);
                     StartCoroutine(BurstFireRate());
+                    ammoScript.subAmmo(1);
                 }
                 break;
         }
     }
-
     private IEnumerator BurstFireRate()
     {
         yield return new WaitForSeconds(1f/ fireRate);

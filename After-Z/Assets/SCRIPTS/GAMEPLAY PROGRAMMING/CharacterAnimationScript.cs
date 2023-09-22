@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-using static UnityEditor.VersionControl.Asset;
 
 public class CharacterAnimationScript : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class CharacterAnimationScript : MonoBehaviour
     public CharacterJumpScript jumpScript;
     [SerializeField]
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
 
     //Enum Variables - To control the state of animations 
@@ -29,7 +29,7 @@ public class CharacterAnimationScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         isFacingRight = true;
-        
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -105,9 +105,18 @@ public class CharacterAnimationScript : MonoBehaviour
         animator.SetInteger("MoveStates", (int)state);
     }
 
+    public void UpgradeFlash() => StartCoroutine(AnimFlash());
 
-
-
+    private IEnumerator AnimFlash()
+    {
+        spriteRenderer.color = Color.green;
+        yield return new WaitForSeconds(0.17f);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.15f);
+        spriteRenderer.color = Color.green;
+        yield return new WaitForSeconds(0.17f);
+        spriteRenderer.color = Color.white;
+    }
 
 
     private void Update()

@@ -9,6 +9,8 @@ public class MovementScript : MonoBehaviour
     [Header("Refernce Settings")]
     [SerializeField]
     public CharacterScript characterScript;
+    public CharacterJumpScript jumpScript;
+    public PowerUpScript powerUpScript;
     [SerializeField]
     public Rigidbody2D rb2D;
     [SerializeField]
@@ -17,6 +19,8 @@ public class MovementScript : MonoBehaviour
     //Movement Variables
     [Header("Speed Settings")]
     public float moveSpeed;
+    public float stompSpeed;
+    private int stompCount;
     private float crouchSlideSpeed;
 
     [Header("Input Settings")]
@@ -35,9 +39,10 @@ public class MovementScript : MonoBehaviour
         //Initialize Classes
         characterScript = GetComponent<CharacterScript>();
         rb2D = GetComponent<Rigidbody2D>();
-
+        powerUpScript = GameObject.Find("PowerUpMachine").GetComponent<PowerUpScript>();
         //Set Speed to Character Script speed var
         moveSpeed = characterScript.getSpeed();
+        stompSpeed = characterScript.getSpeed() + 7;
 
         Debug.Log("MOVE SPEED: " + characterScript.getSpeed());
     }
@@ -45,8 +50,13 @@ public class MovementScript : MonoBehaviour
     private void FixedUpdate()
     {
         MovementHandler();
-
+        moveSpeed = characterScript.getSpeed();
         if (Mathf.Abs(moveX) > 0.1f) { isMoving = true; }
+
+        if (jumpScript.isGrounded())
+        {
+            stompCount = 1;
+        }
 
     }
   
@@ -57,12 +67,16 @@ public class MovementScript : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if(context.performed && isMoving)
-        {
-            isSliding = true;
-        }else if (context.performed && !isMoving)
+        if (context.performed && !isMoving && jumpScript.isGrounded())
         {
             isCrouched = true;
+            moveSpeed = 0;
+        }
+        else if (context.performed && !jumpScript.isGrounded() && powerUpScript.shockwaveUPGRADE && stompCount > 0)
+        {
+            rb2D.AddForce(-transform.up * stompSpeed, ForceMode2D.Impulse);
+            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+            stompCount -= 1;
         }
         else
         {
@@ -70,6 +84,7 @@ public class MovementScript : MonoBehaviour
             isSliding = false;
             moveSpeed = characterScript.getSpeed(); 
         }
+
     }
 
 
