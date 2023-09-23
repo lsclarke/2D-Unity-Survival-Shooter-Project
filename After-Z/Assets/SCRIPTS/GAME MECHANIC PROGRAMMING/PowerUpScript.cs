@@ -148,38 +148,38 @@ public class PowerUpScript : MonoBehaviour
             switch (types)
             {
                 case PowerUps.health:
-                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 30)
                     {
                         Debug.Log("Health UPGRADE Complete");
                         HPUPGRADELOGIC();
-                        scoreManager.subScore(0);
+                        scoreManager.subScore(30);
                     }
                     break;
 
                 case PowerUps.speed:
-                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 50)
                     {
                         Debug.Log("Speed UPGRADE Complete");
                         SPDUPGRADELOGIC();
-                        scoreManager.subScore(0);
+                        scoreManager.subScore(50);
                     }
                 break;
 
                 case PowerUps.shockwave:
-                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 70)
                     {
                         Debug.Log("Shockwave UPGRADE Complete");
                         SHOCKWAVEUPGRADELOGIC();
-                        scoreManager.subScore(0);
+                        scoreManager.subScore(70);
                     }
                 break;
 
                 case PowerUps.ammo:
-                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 50)
                     {
                         Debug.Log("AMMO UPGRADE Complete");
                         AMMOUPGRADELOGIC();
-                        scoreManager.subScore(0);
+                        scoreManager.subScore(50);
                     }
                 break;
         }

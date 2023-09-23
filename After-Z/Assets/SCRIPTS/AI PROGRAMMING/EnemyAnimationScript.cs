@@ -32,15 +32,15 @@ public class EnemyAnimationScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(characterScript.transform.position.x > 0f && !isFacingRight)
-        {
-            FlipAnimation();
-        }
+        //if(characterScript.transform.position.x > 0f && !isFacingRight)
+        //{
+        //    FlipAnimation();
+        //}
 
-        if (characterScript.transform.position.x < 0f && isFacingRight)
-        {
-            FlipAnimation();
-        }
+        //if (characterScript.transform.position.x < 0f && isFacingRight)
+        //{
+        //    FlipAnimation();
+        //}
     }
 
     private void FlipAnimation()
@@ -81,7 +81,17 @@ public class EnemyAnimationScript : MonoBehaviour
     {
         Debug.Log("Speed: " + enemyScript.speed);
         AnimationStatesBehavior();
-        
+
+        if (characterScript.transform.position.x > this.transform.position.x && isFacingRight)
+        {
+            FlipAnimation();
+        }
+
+        if (characterScript.transform.position.x < this.transform.position.x && !isFacingRight)
+        {
+            FlipAnimation();
+        }
+
     }
 
 }
