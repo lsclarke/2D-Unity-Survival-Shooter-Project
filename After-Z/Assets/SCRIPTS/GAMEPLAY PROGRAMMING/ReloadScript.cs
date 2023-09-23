@@ -11,6 +11,41 @@ public class ReloadScript : MonoBehaviour
     [SerializeField] public AmmoManagerScript ammoScript;
     public WeaponScript weaponScript;
 
+    int newClip;
+    int newClip2;
+    int newClip3;
+
+    int newMax;
+    int newMax2;
+    int newMax3;
+
+    public bool upgraded;
+
+    private void FixedUpdate()
+    {
+        if (upgraded)
+        {
+            newClip = 12;
+            newMax = 0;
+
+            newClip2 = 25;
+            newMax2 = 0;
+
+            newClip3 = 15;
+            newMax3 = 0;
+        }
+        else
+        {
+            newClip = 15;
+            newMax = 0;
+
+            newClip2 = 28;
+            newMax2 = 0;
+
+            newClip3 = 18;
+            newMax3 = 0;
+        }
+    }
     public void Reload(InputAction.CallbackContext context)
     {
         
@@ -28,8 +63,7 @@ public class ReloadScript : MonoBehaviour
         {
             case WeaponType.SemiAuto:
 
-                int newClip = 12;
-                int newMax = 0;
+
                 if (ammoScript.getAmmo() < newClip && ammoScript.getAmmoMax() >= newClip)
                 {
                     newMax = ammoScript.getAmmoMax() - newClip;
@@ -38,8 +72,7 @@ public class ReloadScript : MonoBehaviour
                 }
                 break;
             case WeaponType.Auto:
-                int newClip2 = 25;
-                int newMax2 = 0;
+
                 if (ammoScript.getAmmo() < newClip2 && ammoScript.getAmmoMax() >= newClip2)
                 {
                     newMax2 = ammoScript.getAmmoMax() - newClip2;
@@ -49,8 +82,7 @@ public class ReloadScript : MonoBehaviour
                 break;
             case WeaponType.Burst:
 
-                int newClip3 = 15;
-                int newMax3 = 0;
+                 
                 if (ammoScript.getAmmo() < newClip3 && ammoScript.getAmmoMax() >= newClip3)
                 {
                     newMax3 = ammoScript.getAmmoMax() - newClip3;

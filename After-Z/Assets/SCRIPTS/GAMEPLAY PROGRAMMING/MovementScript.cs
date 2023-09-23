@@ -15,6 +15,7 @@ public class MovementScript : MonoBehaviour
     public Rigidbody2D rb2D;
     [SerializeField]
     public PlayerInput input;
+    public GameObject shockwave;
 
     //Movement Variables
     [Header("Speed Settings")]
@@ -56,6 +57,7 @@ public class MovementScript : MonoBehaviour
         if (jumpScript.isGrounded())
         {
             stompCount = 1;
+            shockwave.SetActive(false);
         }
 
     }
@@ -71,16 +73,18 @@ public class MovementScript : MonoBehaviour
         {
             isCrouched = true;
             moveSpeed = 0;
+            shockwave.SetActive(false);
         }
         else if (context.performed && !jumpScript.isGrounded() && powerUpScript.shockwaveUPGRADE && stompCount > 0)
         {
             rb2D.AddForce(-transform.up * stompSpeed, ForceMode2D.Impulse);
+            shockwave.SetActive(true);
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
             stompCount -= 1;
         }
         else
         {
-            isCrouched=false;
+            isCrouched =false;
             isSliding = false;
             moveSpeed = characterScript.getSpeed(); 
         }

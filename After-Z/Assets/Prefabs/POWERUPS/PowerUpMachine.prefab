@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4504384133206699867
 SpriteRenderer:
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb48226c9b99ffa44b1b6c41cc1c3f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cScript: {fileID: 0}
+  cScript: {fileID: 7687430996667614335, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
   jumpScript: {fileID: 601335834022432310, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
-  interactScript: {fileID: 0}
+  interactScript: {fileID: 2436465293448872425, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
   trailRenderer: {fileID: 6362001346759074958, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
   isInRange: 0
   spdUPGRADE: 0

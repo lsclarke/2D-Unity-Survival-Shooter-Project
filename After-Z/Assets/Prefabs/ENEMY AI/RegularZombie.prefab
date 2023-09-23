@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3563452118788244809}
   - component: {fileID: 1869666962004612883}
   - component: {fileID: 3532738160658006085}
+  - component: {fileID: 8161861147174880895}
   m_Layer: 6
   m_Name: RegularZombie
   m_TagString: Enemy
@@ -153,7 +154,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27955c1a87187614091fa55d3aee999a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 120
   speed: 1
   attackPower: 1
   flip: 1
@@ -230,3 +231,20 @@ MonoBehaviour:
   enemyScript: {fileID: 3563452118788244809}
   animator: {fileID: 5962764655318268413}
   state: 0
+--- !u!114 &8161861147174880895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3761617283115538349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862c477a003e9384aaa179ca05e1a94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 507936896087595390}
+  strength: 9
+  duration: 0.2
+  isKnockedBack: 0
+  enemy: {fileID: 3563452118788244809}

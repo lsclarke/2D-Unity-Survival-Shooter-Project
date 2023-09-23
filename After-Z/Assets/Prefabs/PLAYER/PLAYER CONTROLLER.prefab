@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1721547550700244934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8549722791541648616}
+  - component: {fileID: 1472948378676256451}
+  m_Layer: 9
+  m_Name: ShockWave
+  m_TagString: Shockwave
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8549722791541648616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721547550700244934}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6638286371424939932}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1472948378676256451
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721547550700244934}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 904
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &1953937718261733522
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,11 +106,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8549722791541648616}
   - {fileID: 1745801208301446136}
   - {fileID: 9060780995188373594}
   - {fileID: 7277850368313235289}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7979846734487258662
 Rigidbody2D:
@@ -88,6 +156,7 @@ MonoBehaviour:
   jumpScript: {fileID: 601335834022432310}
   powerUpScript: {fileID: 511204041659896974, guid: e5994c08bf5d1534ea8f30f05358b5b2, type: 3}
   rb2D: {fileID: 7979846734487258662}
+  shockwave: {fileID: 1721547550700244934}
   moveSpeed: 0
   stompSpeed: 0
   moveX: 0
@@ -143,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 7979846734487258662}
   projectileSpawner: {fileID: 532181906076130695}
-  ammoScript: {fileID: 4876924804117620946, guid: 47083d3dad5886748807edacf33d79d9, type: 3}
+  ammoScript: {fileID: 0}
   powerUpScript: {fileID: 511204041659896974, guid: e5994c08bf5d1534ea8f30f05358b5b2, type: 3}
   projectiles:
   - {fileID: 5211500850815158014, guid: 7e66f43933963ff4e9f6f53765ac7393, type: 3}
@@ -154,6 +223,7 @@ MonoBehaviour:
   nextTimeToFire: 0
   isShooting: 0
   shift: 0
+  canShift: 0
   type: 0
 --- !u!114 &3206491753637584048
 MonoBehaviour:
@@ -169,6 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoScript: {fileID: 0}
   weaponScript: {fileID: 6532402836861971793}
+  upgraded: 0
 --- !u!114 &6823265152255612611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +527,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

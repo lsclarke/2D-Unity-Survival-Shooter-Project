@@ -14,8 +14,12 @@ public class PowerUpScript : MonoBehaviour
     private CharacterAnimationScript cAnimation;
     private AmmoManagerScript ammoManager;
     private ScoreManagerScript scoreManager;
+    private HealthManagerScript healthManager;
     public InteractScript interactScript;
     public TrailRenderer trailRenderer;
+    private WeaponScript weaponScript;
+    private ReloadScript reloadScript;
+
 
     public bool isInRange;
     private bool hpUPGRADE;
@@ -45,9 +49,12 @@ public class PowerUpScript : MonoBehaviour
     private void Awake()
     {
         interactScript = GameObject.Find("PLAYER CONTROLLER").GetComponent<InteractScript>();
+        weaponScript = GameObject.Find("PLAYER CONTROLLER").GetComponent<WeaponScript>();
+        reloadScript = GameObject.Find("PLAYER CONTROLLER").GetComponent<ReloadScript>();
         cAnimation = GameObject.Find("Player").GetComponent<CharacterAnimationScript>();
         ammoManager = GameObject.Find("Ammo UI Manager").GetComponent<AmmoManagerScript>();
         scoreManager = GameObject.Find("Score UI Manager").GetComponent<ScoreManagerScript>();
+        healthManager = GameObject.Find("Health UI Manager").GetComponent<HealthManagerScript>();
         trailRenderer = GameObject.Find("PLAYER CONTROLLER").GetComponent<TrailRenderer>();
         hpUPGRADE = false;
         spdUPGRADE = false;
@@ -71,6 +78,7 @@ public class PowerUpScript : MonoBehaviour
                 cScript.health = 6;
                 cScript.setHealth(cScript.health);
                 cAnimation.UpgradeFlash();
+                healthManager.upgraded = true;
                 usesCount = 0;
                 hpUPGRADE = true;
             }
@@ -121,6 +129,8 @@ public class PowerUpScript : MonoBehaviour
         {
             if (!ammoUPGRADE && usesCount == 1)
             {
+                weaponScript.canShift = true;
+                reloadScript.upgraded = true;
                 ammoManager.setAmmoMax(ammo2X);
                 ammoManager.setAmmo(ammo);
                 cAnimation.UpgradeFlash();
@@ -130,15 +140,6 @@ public class PowerUpScript : MonoBehaviour
                 usesCount = 0;
                 ammoUPGRADE = true;
             }
-            else
-            {
-                usesCount = 0;
-            }
-            
-        }
-        else
-        {
-            ammoUPGRADE = true;
         }
     }
 

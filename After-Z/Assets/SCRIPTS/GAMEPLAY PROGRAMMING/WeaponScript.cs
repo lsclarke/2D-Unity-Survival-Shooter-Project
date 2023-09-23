@@ -36,9 +36,8 @@ public class WeaponScript : MonoBehaviour
     {
         //Start the game as a semi automatic
         type = WeaponType.SemiAuto;
-        shift = 0;
-        powerUpScript = GetComponent<PowerUpScript>();
-        canShift = powerUpScript.ammoUPGRADE;
+        shift = 0;       
+        canShift = false;
         
 
     }
@@ -48,27 +47,27 @@ public class WeaponScript : MonoBehaviour
 
         if (context.performed && canShift)
         {
-            
-                shift++;
-                if (shift > 2)
-                {
-                    shift = 0;
-                }
 
-                switch (shift)
-                {
-                    case 0:
-                        type = WeaponType.SemiAuto;
-                        break;
-                    case 1:
-                        type = WeaponType.Auto;
-                        break;
-                    case 2:
-                        type = WeaponType.Burst;
-                        break;
-                }
+            shift++;
+            if (shift > 2)
+            {
+                shift = 0;
+            }
 
-            
+            switch (shift)
+            {
+                case 0:
+                    type = WeaponType.SemiAuto;
+                    break;
+                case 1:
+                    type = WeaponType.Auto;
+                    break;
+                case 2:
+                    type = WeaponType.Burst;
+                    break;
+            }
+
+
         }
     }
 
@@ -82,7 +81,7 @@ public class WeaponScript : MonoBehaviour
         if (context.performed)
         {
             isShooting = true;
-            //Instantiate(projectiles[0], projectileSpawner.position, projectileSpawner.rotation);
+            SpawnProjectile(type);
         }
         if (context.canceled)
         {
