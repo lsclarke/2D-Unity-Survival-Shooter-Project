@@ -13,15 +13,22 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] public Transform projectileSpawner;
     [SerializeField] public AmmoManagerScript ammoScript;
 
+    public PowerUpScript powerUpScript;
+
     [Space(5)]
     [Header("Projectile Bullets")]
     [SerializeField] public ProjectileScript[] projectiles = new ProjectileScript[3];
+    
     [SerializeField] public ParticleSystem muzzleFlash;
 
     public float fireRate = 15;
     public float nextTimeToFire = 0;
     public bool isShooting;
-   
+
+    public int shift;
+
+    public bool canShift;
+
     public enum WeaponType { SemiAuto, Auto, Burst }
     [SerializeField] public WeaponType type;
 
@@ -29,26 +36,39 @@ public class WeaponScript : MonoBehaviour
     {
         //Start the game as a semi automatic
         type = WeaponType.SemiAuto;
+        shift = 0;
+        powerUpScript = GetComponent<PowerUpScript>();
+        canShift = powerUpScript.ammoUPGRADE;
+        
+
     }
 
     public void WeaponShift(InputAction.CallbackContext context)
     {
-        
-        if (context.performed)
+
+        if (context.performed && canShift)
         {
-            int shift = UnityEngine.Random.Range(0,2);
-            if (shift == 0)
-            {
-                type = WeaponType.Auto;
-            }
-            if (shift == 1)
-            {
-                type = WeaponType.Burst;
-            }
-        }
-        if (context.canceled)
-        {
-            type = WeaponType.SemiAuto;
+            
+                shift++;
+                if (shift > 2)
+                {
+                    shift = 0;
+                }
+
+                switch (shift)
+                {
+                    case 0:
+                        type = WeaponType.SemiAuto;
+                        break;
+                    case 1:
+                        type = WeaponType.Auto;
+                        break;
+                    case 2:
+                        type = WeaponType.Burst;
+                        break;
+                }
+
+            
         }
     }
 
@@ -62,7 +82,7 @@ public class WeaponScript : MonoBehaviour
         if (context.performed)
         {
             isShooting = true;
-
+            //Instantiate(projectiles[0], projectileSpawner.position, projectileSpawner.rotation);
         }
         if (context.canceled)
         {

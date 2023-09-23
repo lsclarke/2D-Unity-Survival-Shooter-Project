@@ -45,8 +45,7 @@ public class ScoreManagerScript : MonoBehaviour
 
     public float subScore(float num)
     {
-        num -= num;
-        ScorePoints = num;
+        ScorePoints -= num;
         return ScorePoints;
     }
     public float ShowPoints()

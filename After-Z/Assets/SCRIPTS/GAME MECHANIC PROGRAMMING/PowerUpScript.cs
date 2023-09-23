@@ -12,13 +12,15 @@ public class PowerUpScript : MonoBehaviour
     public CharacterScript cScript;
     public CharacterJumpScript jumpScript;
     private CharacterAnimationScript cAnimation;
+    private AmmoManagerScript ammoManager;
+    private ScoreManagerScript scoreManager;
     public InteractScript interactScript;
     public TrailRenderer trailRenderer;
 
     public bool isInRange;
     private bool hpUPGRADE;
     public bool spdUPGRADE;
-    private bool isAMMOMActive;
+    public bool ammoUPGRADE;
     public bool shockwaveUPGRADE;
 
     [Header("Collision Settings")]
@@ -27,6 +29,13 @@ public class PowerUpScript : MonoBehaviour
 
     [Range(0.0f, 10.0f)]
     public float interactcheckRadius;
+
+    [SerializeField]
+    private ProjectileScript projectile1;
+    [SerializeField]
+    private ProjectileScript projectile2;
+    [SerializeField]
+    private ProjectileScript projectile3;
 
     private enum PowerUps { health, speed, ammo, shockwave }
     [SerializeField]
@@ -37,8 +46,13 @@ public class PowerUpScript : MonoBehaviour
     {
         interactScript = GameObject.Find("PLAYER CONTROLLER").GetComponent<InteractScript>();
         cAnimation = GameObject.Find("Player").GetComponent<CharacterAnimationScript>();
+        ammoManager = GameObject.Find("Ammo UI Manager").GetComponent<AmmoManagerScript>();
+        scoreManager = GameObject.Find("Score UI Manager").GetComponent<ScoreManagerScript>();
         trailRenderer = GameObject.Find("PLAYER CONTROLLER").GetComponent<TrailRenderer>();
         hpUPGRADE = false;
+        spdUPGRADE = false;
+        ammoUPGRADE = false;
+        shockwaveUPGRADE = false; 
     }
 
     private void FixedUpdate()
@@ -96,7 +110,36 @@ public class PowerUpScript : MonoBehaviour
                 shockwaveUPGRADE = true;
             }
         }
+    }
 
+    public void AMMOUPGRADELOGIC()
+    {
+        int usesCount = 1;
+        int ammo = ammoManager.getAmmo() * 2;
+        int ammo2X = ammoManager.getAmmoMax() * 2;
+        if (!ammoUPGRADE)
+        {
+            if (!ammoUPGRADE && usesCount == 1)
+            {
+                ammoManager.setAmmoMax(ammo2X);
+                ammoManager.setAmmo(ammo);
+                cAnimation.UpgradeFlash();
+                projectile1.power = 28;
+                projectile2.power = 18;
+                projectile3.power = 23;
+                usesCount = 0;
+                ammoUPGRADE = true;
+            }
+            else
+            {
+                usesCount = 0;
+            }
+            
+        }
+        else
+        {
+            ammoUPGRADE = true;
+        }
     }
 
     public void ActivatePowerUp()
@@ -104,26 +147,38 @@ public class PowerUpScript : MonoBehaviour
             switch (types)
             {
                 case PowerUps.health:
-                    if (Interactable() && interactScript.isInteracting())
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
                     {
                         Debug.Log("Health UPGRADE Complete");
-                        HPUPGRADELOGIC();                      
+                        HPUPGRADELOGIC();
+                        scoreManager.subScore(0);
                     }
                     break;
 
                 case PowerUps.speed:
-                    if (Interactable() && interactScript.isInteracting())
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
                     {
                         Debug.Log("Speed UPGRADE Complete");
                         SPDUPGRADELOGIC();
+                        scoreManager.subScore(0);
                     }
                 break;
 
                 case PowerUps.shockwave:
-                    if (Interactable() && interactScript.isInteracting())
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
                     {
                         Debug.Log("Shockwave UPGRADE Complete");
                         SHOCKWAVEUPGRADELOGIC();
+                        scoreManager.subScore(0);
+                    }
+                break;
+
+                case PowerUps.ammo:
+                    if (Interactable() && interactScript.isInteracting() && scoreManager.ShowPoints() >= 0)
+                    {
+                        Debug.Log("AMMO UPGRADE Complete");
+                        AMMOUPGRADELOGIC();
+                        scoreManager.subScore(0);
                     }
                 break;
         }

@@ -3884,6 +3884,10 @@ PrefabInstance:
       propertyPath: ammoScript
       value: 
       objectReference: {fileID: 1064968995}
+    - target: {fileID: 6362001346759074958, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6532402836861971793, guid: 7e014b76d6f5adf4db12d0633fd3430a, type: 3}
       propertyPath: ammoScript
       value: 

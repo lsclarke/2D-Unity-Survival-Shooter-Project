@@ -30,7 +30,7 @@ public class ReloadScript : MonoBehaviour
 
                 int newClip = 12;
                 int newMax = 0;
-                if (ammoScript.getAmmo() <= 0 && ammoScript.getAmmoMax() >= newClip)
+                if (ammoScript.getAmmo() < newClip && ammoScript.getAmmoMax() >= newClip)
                 {
                     newMax = ammoScript.getAmmoMax() - newClip;
                     ammoScript.setAmmoMax(newMax);
@@ -40,7 +40,7 @@ public class ReloadScript : MonoBehaviour
             case WeaponType.Auto:
                 int newClip2 = 25;
                 int newMax2 = 0;
-                if (ammoScript.getAmmo() <= 0 && ammoScript.getAmmoMax() >= newClip2)
+                if (ammoScript.getAmmo() < newClip2 && ammoScript.getAmmoMax() >= newClip2)
                 {
                     newMax2 = ammoScript.getAmmoMax() - newClip2;
                     ammoScript.setAmmoMax(newMax2);
@@ -51,7 +51,7 @@ public class ReloadScript : MonoBehaviour
 
                 int newClip3 = 15;
                 int newMax3 = 0;
-                if (ammoScript.getAmmo() <= 0 && ammoScript.getAmmoMax() >= newClip3)
+                if (ammoScript.getAmmo() < newClip3 && ammoScript.getAmmoMax() >= newClip3)
                 {
                     newMax3 = ammoScript.getAmmoMax() - newClip3;
                     ammoScript.setAmmoMax(newMax3);
