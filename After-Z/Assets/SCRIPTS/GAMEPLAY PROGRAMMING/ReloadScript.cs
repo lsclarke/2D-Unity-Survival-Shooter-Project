@@ -70,6 +70,14 @@ public class ReloadScript : MonoBehaviour
                     ammoScript.setAmmoMax(newMax);
                     ammoScript.setAmmo(newClip);
                 }
+                else 
+                {
+                    if (ammoScript.getAmmoMax() > 0)
+                    {
+                        ammoScript.setAmmo(ammoScript.getAmmoMax());
+                        ammoScript.setAmmoMax(0);
+                    }
+                }
                 break;
             case WeaponType.Auto:
 
@@ -78,6 +86,14 @@ public class ReloadScript : MonoBehaviour
                     newMax2 = ammoScript.getAmmoMax() - newClip2;
                     ammoScript.setAmmoMax(newMax2);
                     ammoScript.setAmmo(newClip2);
+                }
+                else
+                {
+                    if (ammoScript.getAmmoMax() > 0)
+                    {
+                        ammoScript.setAmmo(ammoScript.getAmmoMax());
+                        ammoScript.setAmmoMax(0);
+                    }
                 }
                 break;
             case WeaponType.Burst:
@@ -88,6 +104,14 @@ public class ReloadScript : MonoBehaviour
                     newMax3 = ammoScript.getAmmoMax() - newClip3;
                     ammoScript.setAmmoMax(newMax3);
                     ammoScript.setAmmo(newClip3);
+                }
+                else
+                {
+                    if (ammoScript.getAmmoMax() > 0)
+                    { 
+                        ammoScript.setAmmo(ammoScript.getAmmoMax());
+                        ammoScript.setAmmoMax(0);
+                    }
                 }
                 break;
         }

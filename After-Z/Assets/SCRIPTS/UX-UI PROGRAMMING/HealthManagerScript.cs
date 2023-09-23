@@ -51,11 +51,11 @@ public class HealthManagerScript : MonoBehaviour
 
                 if (characterScript.health < 6 && upgraded)
                 {
-                    StartCoroutine(HealthBack(4f));
+                    StartCoroutine(HealthBack(5f));
                 }
                 else if (characterScript.health < 3 && !upgraded)
                 {
-                StartCoroutine(HealthBack(4f));
+                StartCoroutine(HealthBack(5f));
                 }
     }
 
